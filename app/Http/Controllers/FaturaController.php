@@ -86,10 +86,15 @@ class FaturaController extends Controller
     {
         Fatura::where('id', $id)->update(['del' => 1]);
         
-        $fatura = DB::table('faturas')->where('id', $id)->first();
-        return view('home.index', ['fatura'=> $fatura]);
+        $faturas = DB::table('faturas')->get()->where('del', 0);
+        $result = json_decode($faturas, true);
+        return view('home.index', ['faturas'=> $result]);
     }
-    
+    public function print($id)
+    {
+        $fatura = DB::table('faturas')->where('id', $id)->first();
+        return view('print.index', ['fatura'=> $fatura]);
+    }
 
     /**
      * Show the form for editing the specified resource.
