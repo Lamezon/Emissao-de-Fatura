@@ -16,8 +16,8 @@ class FaturaController extends Controller
      */
     public function index()
     {
-        $produtos = DB::table('produtos')->get();
-        $result = json_decode($produtos, true);
+        $produtos = DB::table('produtos')->get()->where('del', 0);
+        $result = json_decode($produtos, true); 
         $clientes = DB::table('clientes')->get();
         $result2 = json_decode($clientes, true);
         return view('bill.index', ['produtos'=> $result, 'clientes' => $result2]);
@@ -30,8 +30,19 @@ class FaturaController extends Controller
      */
     public function create(FaturaRequest $request)
     {
-        var_dump($_POST);
-        exit();
+        $request->validated();
+        $cliente = DB::table('clientes')->where('id', $_POST['id_cliente'])->first();
+        $cliente_nome = $cliente->nome;
+        $fatura = new Fatura();
+        $fatura->nome = $cliente_nome;
+        $fatura->status = 1;
+        $fatura->observacao = request('observacao');
+        $fatura->valor = request('totalFatura');
+        $fatura->data_emissao = date("d-m-Y");
+        $fatura->save();
+        return redirect('/')->with('success', "Emissão Registrada");
+       
+        
     }
 
     /**
@@ -51,10 +62,34 @@ class FaturaController extends Controller
      * @param  \App\Models\Fatura  $Fatura
      * @return \Illuminate\Http\Response
      */
-    public function show(Fatura $Fatura)
+    public function show($id)
     {
-        //
+        $fatura = DB::table('faturas')->where('id', $id)->first();
+        return view('bill.show', ['fatura'=> $fatura]);
     }
+
+    public function emitir($id)
+    {
+        Fatura::where('id', $id)->update(['status' => 2]);
+        
+        $fatura = DB::table('faturas')->where('id', $id)->first();
+        return view('bill.show', ['fatura'=> $fatura]);
+    }
+    public function cancelar($id)
+    {
+        Fatura::where('id', $id)->update(['status' => 3]);
+        
+        $fatura = DB::table('faturas')->where('id', $id)->first();
+        return view('bill.show', ['fatura'=> $fatura]);
+    }
+    public function apagar($id)
+    {
+        Fatura::where('id', $id)->update(['del' => 1]);
+        
+        $fatura = DB::table('faturas')->where('id', $id)->first();
+        return view('home.index', ['fatura'=> $fatura]);
+    }
+    
 
     /**
      * Show the form for editing the specified resource.

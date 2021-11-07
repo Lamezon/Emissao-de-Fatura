@@ -23,19 +23,22 @@
                     <td><?= $row['id']?></td>   
                     <td><?= $row['nome']?></td>  
                     <td><?= $row['observacao']?></td>  
-                    <td><button type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"><?php 
+                    <td><a href="/fatura/<?=$row['id']?>"><?php 
                      switch ($row['status']) {
                         case '1':
-                            echo "Salvo"; //azul
+                            ?>
+                            <button type="button" class="btn btn-primary btn-block" aria-pressed="false" autocomplete="off">Salvo</button><?php
                             break;
                         case '2':
-                            echo "Faturado"; //verde
+                            ?>
+                            <button type="button" class="btn btn-success btn-block" aria-pressed="false" autocomplete="off">Faturado</button><?php
                             break;
                         case '3':
-                            echo "Cancelado"; //vermelho
+                            ?>
+                            <button type="button" class="btn btn-danger btn-block" aria-pressed="false" autocomplete="off">Cancelado</button><?php
                             break;
                     }      $row['status']
-                    ?></button></td>
+                    ?></a></td>
                     <td><i class="fas fa-2x fa-print"></i></td>
                     </tr>  
                 <?php } ?>

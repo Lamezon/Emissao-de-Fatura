@@ -17,7 +17,9 @@ class CreateFaturasTable extends Migration
             $table->id();
             $table->string('nome', 255);
             $table->integer('status');
-            $table->text('observacao');
+            $table->string('valor', 255);
+            $table->text('observacao')->nullable();
+            $table->tinyInteger('del')->default('0');
             $table->string('data_emissao', 20);
             $table->timestamps();
         });
@@ -33,3 +35,4 @@ class CreateFaturasTable extends Migration
         Schema::dropIfExists('faturas');
     }
 }
+

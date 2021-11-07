@@ -48,6 +48,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
         Route::get('/emissao-fatura', 'FaturaController@index');
         Route::post('/emissao-fatura', 'FaturaController@create')->name('bill.create');
+        Route::get('/fatura/{id}', 'FaturaController@show')->name('bill.show');
+        Route::post('/emitir/{id}', 'FaturaController@emitir')->name('bill.emitir');
+        Route::post('/cancelar/{id}', 'FaturaController@cancelar')->name('bill.cancelar');
+        Route::post('/apagar/{id}', 'FaturaController@apagar')->name('bill.deletar');
      
         
         

@@ -7,9 +7,8 @@
         <div class="table-responsive">
         <form method="post" action="{{ route('bill.create') }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-        <input type="hidden" name="data" value="<?=date("d-m-Y")?>"/>
         <h4 style="text-align: center;">Cliente</h4> 
-            <select id="cliente" name="cliente" class="form-select" size="6" style="width: 100%;">
+            <select required id="id_cliente" name="id_cliente" class="form-select" size="6" style="width: 100%;">
                 <?php 
                 foreach ($clientes as $row)  
                 { ?>
@@ -55,6 +54,14 @@
                  <td scope="col" style="text-align: center;">R$<span><input style="text-align: center;" id="val" name="totalFatura" type="text"></span></td>
              </tr>
         </table>
+        <div class="form-group">
+            <label for="observacao">Observação</label>
+            <textarea class="form-control" id="observacao" name="observacao" rows="3"></textarea>
+        </div>
+        <!-- <div class="form-group">
+            <label for="observacao">Descrição da Fatura</label>
+            <textarea disabled class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+        </div> -->
         <button class="btn btn-block btn-info">GERAR FATURA</button>
         </form>
         </div>
@@ -125,7 +132,6 @@
                         
     }
 });
-
     </script>
         @endauth
 
