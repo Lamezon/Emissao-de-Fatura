@@ -15,6 +15,7 @@
                 <h4>Nome: <?=$cliente->nome?></h4>
                 <h4>CPF: <?=$cliente->cpf?></h4>
                 <h4>Telefone: <?=$cliente->telefone?></h4>
+                <h4>Endereço: <?=$cliente->endereco?></h4>
                 <h4>Cidade: <?=$cliente->cidade?></h4>
         </div>
         <div class="container data" style="margin-top: 5px;">
@@ -22,6 +23,7 @@
                 <h4>Status: <?=$fatura->status?></h4>
                 <h4>Valor: <?=$fatura->valor?></h4>
                 <h4>Descrição: <br><?=$fatura->descricao?></h4>
+                <?php if($fatura->observacao!=NULL){?><h4>Observação: <br><?=$fatura->observacao?></h4><?php }?>
                 <h4>Data de Criação: <?=$fatura->data_emissao?></h4>
 
         </div>
