@@ -32,6 +32,14 @@
         </div>
 
         <div class="form-group form-floating mb-3">
+            <input type="text" class="form-control" name="endereco" value="{{ old('endereco') }}" placeholder="Nome do Endereço do Cliente" required="required">
+            <label for="floatingEndereco">Endereço</label>
+            @if ($errors->has('Endereco'))
+                <span class="text-danger text-left">{{ $errors->first('Endereco') }}</span>
+            @endif
+        </div>
+
+        <div class="form-group form-floating mb-3">
             <input type="text" class="form-control" name="cidade" value="{{ old('cidade') }}" placeholder="Cidade do Cliente" required="required">
             <label for="floatingTelefone">Cidade</label>
             @if ($errors->has('Cidade'))

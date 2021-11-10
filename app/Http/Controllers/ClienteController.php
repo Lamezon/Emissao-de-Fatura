@@ -36,6 +36,7 @@ class ClienteController extends Controller
         $client = new Cliente();
         $client->nome = request('nome');
         $client->cpf = request('cpf');
+        $client->endereco = request('endereco');
         $client->telefone = request('telefone');
         $client->cidade = request('cidade');
         $client->save();

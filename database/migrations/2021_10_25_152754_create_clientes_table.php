@@ -18,7 +18,9 @@ class CreateClientesTable extends Migration
             $table->string('nome', 100);
             $table->string('cpf', 20);
             $table->string('telefone', 25);
+            $table->string('endereco', 255)->default('');
             $table->string('cidade', 100);
+            $table->tinyInteger('del')->default('0');
             $table->timestamps();
         });
     }

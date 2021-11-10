@@ -39,7 +39,7 @@
                             break;
                     }      $row['status']
                     ?></a></td>
-                    <td><a href="/imprimir/<?=$row['id']?>"><i class="fas fa-2x fa-print"></i></a></td>
+                    <td><a target="_blank" href="/imprimir/<?=$row['id']?>"><i class="fas fa-2x fa-print"></i></a></td>
                     </tr>  
                 <?php } ?>
                 </tbody>

@@ -19,6 +19,7 @@ class CreateProdutosTable extends Migration
             $table->decimal('valor', 8, 2);
             $table->text('descricao');
             $table->decimal('taxa', 8, 2);
+            $table->tinyInteger('del')->default('0');
             $table->timestamps();
         });
     }

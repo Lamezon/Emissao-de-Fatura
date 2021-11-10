@@ -12,6 +12,7 @@
                     <th scope="col">Nome do Cliente</th>
                     <th scope="col">CPF</th>
                     <th scope="col">Telefone</th>
+                    <th scope="col">Endereço</th>
                     <th scope="col">Cidade</th>
                 </tr>
                 </thead>
@@ -24,6 +25,7 @@
                     <td><?= $row['nome']?></td>  
                     <td><?= $row['cpf']?></td>
                     <td><?= $row['telefone']?></td>
+                    <td><?= $row['endereco']?></td> 
                     <td><?= $row['cidade']?></td> 
                     </tr>  
                 <?php } ?>
