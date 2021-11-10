@@ -33,11 +33,11 @@
                     <td><?= $row['nome']?></td>  
                     <td><?= (($row['valor'])+($row['taxa']))?></td>
                     <td>
-                        <button type="button" class="button btn-success hollow circle" dataValor="<?= (($row['valor'])+($row['taxa']))?>" data-quantity="plus" dataTotal="<?=$row['id']?>" data-field="quantity<?=$row['id']?>">
+                        <button type="button" class="button btn-success hollow circle" dataValor="<?= (($row['valor'])+($row['taxa']))?>" data-quantity="plus" onclick="adicionaProduto('<?=$row['nome']?>')" dataTotal="<?=$row['id']?>" data-field="quantity<?=$row['id']?>">
                              <i class="fa fa-plus" aria-hidden="true"></i>
                         </button>
                         <input min="0" disabled class="input-group-field" type="number" dataValor="<?= (($row['valor'])+($row['taxa']))?>" name="quantity<?=$row['id']?>" value="0">
-                        <button type="button" class="button btn-danger hollow circle" dataValor="<?= (($row['valor'])+($row['taxa']))?>" data-quantity="minus" dataTotal="<?=$row['id']?>" data-field="quantity<?=$row['id']?>">
+                        <button type="button" class="button btn-danger hollow circle" dataValor="<?= (($row['valor'])+($row['taxa']))?>" data-quantity="minus" onclick="removeProduto('<?=$row['nome']?>')" dataTotal="<?=$row['id']?>" data-field="quantity<?=$row['id']?>">
                              <i class="fa fa-minus" aria-hidden="true"></i>
                         </button>
                     </td>
@@ -58,14 +58,42 @@
             <label for="observacao">Observação</label>
             <textarea class="form-control" id="observacao" name="observacao" rows="3"></textarea>
         </div>
-        <!-- <div class="form-group">
+        <div class="form-group">
             <label for="observacao">Descrição da Fatura</label>
-            <textarea disabled class="form-control" id="descricao" name="descricao" rows="3"></textarea>
-        </div> -->
+            <textarea read class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+        </div>
         <button class="btn btn-block btn-info">GERAR FATURA</button>
         </form>
         </div>
     <script>
+        var produtos = [];
+        function adicionaProduto($element){
+            produtos.push($element);
+            produtos.sort();
+            atualizaDescricao(produtos);
+        }
+        function removeProduto($element){
+            var index = produtos.indexOf($element);
+            if (index > -1) {
+            produtos.splice(index, 1);
+            }
+            produtos.sort();
+            atualizaDescricao(produtos);
+        }
+        function atualizaDescricao(lista){
+           
+           
+            var count = lista.reduce(function(prev, cur) {
+            prev[cur] = (prev[cur] || 0) + 1;
+            return prev;
+            }, {});
+            
+            const element = document.getElementById("descricao");
+            var convert = JSON.stringify(count, null, '\t');
+            element.innerHTML = "";
+            element.innerHTML = convert; 
+        }
+        
         jQuery(document).ready(function(){
     // This button will increment the value
     $('[data-quantity="plus"]').click(function(e){

@@ -16,11 +16,13 @@ class CreateFaturasTable extends Migration
         Schema::create('faturas', function (Blueprint $table) {
             $table->id();
             $table->string('nome', 255);
+            $table->integer('id_cliente');
             $table->integer('status');
             $table->string('valor', 255);
             $table->text('observacao')->nullable();
             $table->tinyInteger('del')->default('0');
             $table->string('data_emissao', 20);
+            $table->text('descricao')->nullable();
             $table->timestamps();
         });
     }

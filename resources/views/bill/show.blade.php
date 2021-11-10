@@ -19,6 +19,12 @@
             <label class="text-center">Valor Total</label>
             <input disabled type="text" class="form-control" value="R$<?=$fatura->valor?>">
             </div>
+
+            <div class="form-group">
+            <label class="text-center">Descrição da Fatura</label>
+            
+            <textarea disabled class="form-control" rows="6" value="R$<?=$fatura->descricao?>"><?=$fatura->descricao?></textarea>
+            </div>
             
             <div class="form-group">
             <label class="text-center">Observação da Fatura</label>

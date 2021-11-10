@@ -30,15 +30,18 @@ class FaturaController extends Controller
      */
     public function create(FaturaRequest $request)
     {
+
         $request->validated();
         $cliente = DB::table('clientes')->where('id', $_POST['id_cliente'])->first();
         $cliente_nome = $cliente->nome;
         $fatura = new Fatura();
         $fatura->nome = $cliente_nome;
+        $fatura->id_cliente = request('id_cliente');
         $fatura->status = 1;
         $fatura->observacao = request('observacao');
         $fatura->valor = request('totalFatura');
         $fatura->data_emissao = date("d-m-Y");
+        $fatura->descricao = request('descricao');
         $fatura->save();
         return redirect('/')->with('success', "Emissão Registrada");
        
@@ -93,7 +96,8 @@ class FaturaController extends Controller
     public function print($id)
     {
         $fatura = DB::table('faturas')->where('id', $id)->first();
-        return view('print.index', ['fatura'=> $fatura]);
+        $cliente = DB::table('clientes')->where('id', $fatura->id_cliente)->first();
+        return view('print.index', ['fatura'=> $fatura, 'cliente'=>$cliente]);
     }
 
     /**
