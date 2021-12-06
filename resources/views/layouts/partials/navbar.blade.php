@@ -18,6 +18,7 @@
          <li><a href="/" class="nav-link px-2 text-white btn btn-outline-secondary">Lista de Faturas</a></li>
          <li><a href="/lista-clientes" class="nav-link px-2 text-white btn btn-outline-secondary">Lista de Clientes</a></li>
          <li><a href="/lista-produtos" class="nav-link px-2 text-white btn btn-outline-secondary">Lista de Produtos</a></li>
+         <li><a href="/administrador" class="nav-link px-2 text-white btn btn-outline-secondary">Informações</a></li>
          
         </ul>
         <div class="text-end">

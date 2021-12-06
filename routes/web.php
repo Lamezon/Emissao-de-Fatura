@@ -52,7 +52,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::post('/emitir/{id}', 'FaturaController@emitir')->name('bill.emitir');
         Route::post('/cancelar/{id}', 'FaturaController@cancelar')->name('bill.cancelar');
         Route::post('/apagar/{id}', 'FaturaController@apagar')->name('bill.deletar');
-        
+        Route::get('/administrador', 'AdministratorController@index');
+        Route::post('/administrador', 'AdministratorController@create')->name('administrator.create');
         Route::get('/imprimir/{id}', 'FaturaController@print')->name('bill.print');
         
         
