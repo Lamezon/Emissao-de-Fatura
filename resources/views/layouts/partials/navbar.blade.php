@@ -13,17 +13,29 @@
         {{auth()->user()->name}}
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
          <li><a href="/cad-produto" class="nav-link px-2 text-white btn btn-outline-secondary">Cadastro de Produto</a></li>
+         <li><a href="/lista-produtos" class="nav-link px-2 text-white btn btn-outline-secondary">Lista de Produtos</a></li>
          <li><a href="/cad-cliente" class="nav-link px-2 text-white btn btn-outline-secondary">Cadastro de Cliente</a></li>
+         <li><a href="/lista-clientes" class="nav-link px-2 text-white btn btn-outline-secondary">Lista de Clientes</a></li>
          <li><a href="/emissao-fatura" class="nav-link px-2 text-white btn btn-outline-secondary">Emissão de Fatura</a></li>
          <li><a href="/" class="nav-link px-2 text-white btn btn-outline-secondary">Lista de Faturas</a></li>
-         <li><a href="/lista-clientes" class="nav-link px-2 text-white btn btn-outline-secondary">Lista de Clientes</a></li>
-         <li><a href="/lista-produtos" class="nav-link px-2 text-white btn btn-outline-secondary">Lista de Produtos</a></li>
-         <li><a href="/administrador" class="nav-link px-2 text-white btn btn-outline-secondary">Informações</a></li>
          
+         
+         <!-- <li><a href="/administrador" class="nav-link px-2 text-white btn btn-outline-secondary">Informações</a></li>
+          -->
         </ul>
         <div class="text-end">
           <a href="{{ route('logout.perform') }}" class="btn btn-outline-light me-2">Sair</a>
         </div>
+        <script>
+        $(document).ready(function() {
+        $('#table').DataTable({
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/a5734b29083/i18n/Portuguese.json"
+            }
+        });
+        } );
+         
+        </script>
       @endauth
 
       @guest

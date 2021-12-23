@@ -16,7 +16,7 @@
         </div>
 
         <div class="form-group form-floating mb-3">
-            <input type="text" class="form-control" name="descricao" value="{{ old('descricao') }}" placeholder="Descrição do Produto">
+            <input type="text" class="form-control" name="descricao" value="{{ old('descricao') }}" required="required" placeholder="Descrição do Produto">
             <label for="floatingDescription">Descrição do Produto</label>
             @if ($errors->has('descricao'))
                 <span class="text-danger text-left">{{ $errors->first('descricao') }}</span>
@@ -38,7 +38,7 @@
         <div class="form-group row form-floating mb-3">
             <label style="text-align: right;" class="col-xs-2 col-form-label" for="floatingTax">R$</label>
             <div class="col-xs-10">
-                <input type="number" class="form-control" name="taxa" step="0.01" value="{{ old('taxa') }}" placeholder="0.50" required="required">
+                <input type="number" class="form-control" name="taxa" step="0.01" value="0" placeholder="0.50" required="required">
             
                 <label for="floatingTax">Valor da Taxa</label>
                 @if ($errors->has('taxa'))

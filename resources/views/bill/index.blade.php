@@ -3,12 +3,15 @@
     <div class="bg-light p-5 rounded">
         
         @auth
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.css">
+
         <h1 style="text-align: center;">Emitir Fatura</h1>
         <div class="table-responsive">
         <form method="post" action="{{ route('bill.create') }}">
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-        <h4 style="text-align: center;">Cliente</h4> 
-            <select required id="id_cliente" name="id_cliente" class="form-select" size="6" style="width: 100%;">
+        <h4 style="text-align: center;">Cliente</h4>
+            <select data-placeholder="Selecione um cliente" required id="id_cliente" name="id_cliente" class="form-select chosen-select" style="width:100%">
                 <?php 
                 foreach ($clientes as $row)  
                 { ?>
@@ -60,12 +63,13 @@
         </div>
         <div class="form-group">
             <label for="observacao">Descrição da Fatura</label>
-            <textarea read class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+            <textarea readonly read class="form-control" id="descricao" name="descricao" rows="3"></textarea>
         </div>
         <button class="btn btn-block btn-info">GERAR FATURA</button>
         </form>
         </div>
     <script>
+        $(".chosen-select").chosen();
         var produtos = [];
         function adicionaProduto($element){
             produtos.push($element);
@@ -90,8 +94,9 @@
             
             const element = document.getElementById("descricao");
             var convert = JSON.stringify(count, null, '\t');
+            var result = convert.substring(2, convert.length-2);
             element.innerHTML = "";
-            element.innerHTML = convert; 
+            element.innerHTML = result; 
         }
         
         jQuery(document).ready(function(){

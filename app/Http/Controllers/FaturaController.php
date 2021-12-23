@@ -16,7 +16,7 @@ class FaturaController extends Controller
      */
     public function index()
     {
-        $produtos = DB::table('produtos')->get()->where('del', 0);
+        $produtos = DB::table('produtos')->orderBy('nome', 'ASC')->get()->where('del', 0);
         $result = json_decode($produtos, true); 
         $clientes = DB::table('clientes')->get();
         $result2 = json_decode($clientes, true);
@@ -34,9 +34,11 @@ class FaturaController extends Controller
         $request->validated();
         $cliente = DB::table('clientes')->where('id', $_POST['id_cliente'])->first();
         $cliente_nome = $cliente->nome;
+        $cliente_email = $cliente->email;
         $fatura = new Fatura();
         $fatura->nome = $cliente_nome;
         $fatura->id_cliente = request('id_cliente');
+        $fatura->email = $cliente_email;
         $fatura->status = 1;
         $fatura->observacao = request('observacao');
         $fatura->valor = request('totalFatura');

@@ -36,9 +36,11 @@ class ClienteController extends Controller
         $client = new Cliente();
         $client->nome = request('nome');
         $client->cpf = request('cpf');
+        $client->cep = request('cep');
         $client->endereco = request('endereco');
         $client->telefone = request('telefone');
         $client->cidade = request('cidade');
+        $client->email = request('email');
         $client->save();
         return redirect('/lista-clientes')->with('success', "Cliente Registrado");
     }

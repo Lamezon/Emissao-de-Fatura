@@ -19,6 +19,7 @@ class CreateFaturasTable extends Migration
             $table->integer('id_cliente');
             $table->integer('status');
             $table->string('valor', 255);
+            $table->string('email',255);
             $table->text('observacao')->nullable();
             $table->tinyInteger('del')->default('0');
             $table->string('data_emissao', 20);

@@ -1,11 +1,12 @@
 @extends('layouts.app-master')
 
 @section('content')
+
     <div class="bg-light p-5 rounded">
         @auth
         <h1>Lista de Clientes</h1>
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered table-sm border-light">
+            <table id="table" class="table table-striped table-hover table-bordered table-sm border-light">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -14,6 +15,7 @@
                     <th scope="col">Telefone</th>
                     <th scope="col">Endereço</th>
                     <th scope="col">Cidade</th>
+                    <th scope="col">Email</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -26,13 +28,15 @@
                     <td><?= $row['cpf']?></td>
                     <td><?= $row['telefone']?></td>
                     <td><?= $row['endereco']?></td> 
-                    <td><?= $row['cidade']?></td> 
+                    <td><?= $row['cidade']?></td>
+                    <td><?= $row['email']?></td> 
                     </tr>  
                 <?php } ?>
                 </tbody>
 
             </table>
         </div>
+    
         @endauth
 
         @guest

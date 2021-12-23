@@ -5,7 +5,7 @@
         @auth
         <h1>Lista de Produtos</h1>
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered table-sm border-light">
+            <table id="table" class="table table-striped table-hover table-bordered table-sm border-light">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -31,6 +31,7 @@
 
             </table>
         </div>
+       
         @endauth
 
         @guest

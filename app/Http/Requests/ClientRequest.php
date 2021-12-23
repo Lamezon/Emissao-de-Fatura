@@ -26,7 +26,8 @@ class ClientRequest extends FormRequest
         return [
             'nome' => 'required',
             'cpf' => 'required',
-            'telefone' => 'required'
+            'telefone' => 'required',
+            'email' =>'required'
         ];
     }
 }

@@ -37,14 +37,38 @@
         <div class="container" style="margin-top: 5px;">
                 <span class="subtitle">Dados da Locação</span>
                 <h4><strong>Status:</strong> <?=$fatura->status?></h4>
-                <h4><strong>Descrição:</strong> <?=$fatura->descricao?></h4>
+                <h4 class="data" style="padding: 15px; text-align: center"><strong>Descrição<br></strong>
+                <?php $linha_descricao = explode(",", $fatura->descricao) ?>
+                <?php $imploded = implode("<br>",$linha_descricao); ?>
+                <?php $clear_imploded = str_replace('"', "", $imploded)?>
+                <?php $clear_imploded2 = str_replace(':', "</td><td>", $clear_imploded)?>
+                <?php $desc = explode("\t", $clear_imploded2) ?>
+                <table class="table table-striped table-hover table-bordered table-sm border-light">
+                <thead>
+                <tr>
+                    <th scope="col">Nome do Produto</th>
+                    <th scope="col">Quantidade</th>       
+                </tr>
+                </thead>
+                <?php 
+                 foreach ($desc as $index) {
+                        echo '<tr>';
+                                echo '<td>'. $index .'</td>';
+                        echo '</tr>';
+                }
+                ?>
+                </table>
+
                 <h4 style="text-align:center"><strong>Valor Total da Fatura:</strong> R$<?=$fatura->valor?></h4>
 
         </div>
         <div class="container data">
         <?php if($fatura->observacao!=NULL){?><h4 class="centerinfo"><strong>Observação:</strong> <br><?=$fatura->observacao?></h4><?php }?>
-                
         </div>
+        <div class="container data">
+                <i><h5 style="text-align:center">"Operação não sujeita a emissão de documento fiscal de serviço nos termos da LC 116/2003 que exclui a locação de bens móveis da lista de serviços"</h5></i>
+        </div>
+        
         </div>
 
         <style>
@@ -65,7 +89,7 @@
                 font-weight: bold;
         }
         .small-subtitle{
-                font-size: 30px;
+                font-size: 25px;
                 font-weight:bold;
         }
         h4{

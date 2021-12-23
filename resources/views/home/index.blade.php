@@ -5,14 +5,15 @@
         @auth
         <h1>Lista de Faturas</h1>
         <div class="table-responsive">
-            <table class="table table-striped table-hover table-bordered table-sm border-light">
+            <table id="table" class="table table-striped table-hover table-bordered table-sm border-light">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Nome do Cliente</th>
                     <th scope="col">Observação</th>
                     <th scope="col">Status</th>
-                    <th scope="col"></th>
+                    <th scope="col">Imprimir</th>
+                    <th scope="col">Email</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,13 +40,17 @@
                             break;
                     }      $row['status']
                     ?></a></td>
-                    <td><a target="_blank" href="/imprimir/<?=$row['id']?>"><i class="fas fa-2x fa-print"></i></a></td>
-                    </tr>  
+                    <td style="text-align:center"><a target="_blank" href="/imprimir/<?=$row['id']?>"><i class="fas fa-2x fa-print"></i></a></td>
+                    <td style="text-align:center"><a style="padding-left:10px" href="mailto:<?=$row['email']?>"><i class="fas fa-2x fa-envelope"></i></a></td>
+                        
+                </tr>  
                 <?php } ?>
                 </tbody>
 
             </table>
         </div>
+
+    
         @endauth
 
         @guest
