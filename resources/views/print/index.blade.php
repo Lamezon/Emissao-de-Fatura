@@ -35,6 +35,21 @@
                 
         </div>
         <div class="container" style="margin-top: 5px;">
+                <span class="subtitle">Contrato&emsp;&emsp;&emsp;</span><span class="subtitle">Pagamento</span>
+                <table class="table table-striped table-hover table-bordered table-sm border-light">
+                <thead>
+                <tr>
+                    <th scope="col">Número</th>
+                    <th scope="col">Forma de Pagamento</th>       
+                </tr>
+                </thead>
+                <tr>
+                    <td>071.11</td>
+                    <td>Transferência Bancária 18/11/2021</td>
+                </tr>
+                </table>
+        </div>
+        <div class="container" style="margin-top: 5px;">
                 <span class="subtitle">Dados da Locação</span>
                 <h4><strong>Status:</strong> <?=$fatura->status?></h4>
                 <h4 class="data" style="padding: 15px; text-align: center"><strong>Descrição<br></strong>
