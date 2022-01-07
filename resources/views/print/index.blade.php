@@ -34,21 +34,7 @@
                 <h4><strong>Telefone: </strong><?=$cliente->telefone?></h4>               
                 
         </div>
-        <div class="container" style="margin-top: 5px;">
-                <span class="subtitle">Contrato&emsp;&emsp;&emsp;</span><span class="subtitle">Pagamento</span>
-                <table class="table table-striped table-hover table-bordered table-sm border-light">
-                <thead>
-                <tr>
-                    <th scope="col">Número</th>
-                    <th scope="col">Forma de Pagamento</th>       
-                </tr>
-                </thead>
-                <tr>
-                    <td>071.11</td>
-                    <td>Transferência Bancária 18/11/2021</td>
-                </tr>
-                </table>
-        </div>
+        
         <div class="container" style="margin-top: 5px;">
                 <span class="subtitle">Dados da Locação</span>
                 <h4><strong>Status:</strong> <?=$fatura->status?></h4>
@@ -74,6 +60,22 @@
                 ?>
                 </table>
 
+                <div class="row">
+                        <div class="col-6">
+                                <div class="container data descpag">UNIPRIME COOPERATIVA CENTRAL 1031
+                                        <br>BANCO 099<br>
+                                        AG 4402-4<br>
+                                        C/C 75.883-3<br>
+                                        CNPJ 26.453.836/0001-35 (PIX)<br>
+                                        G. W. COMERCIO DE CONTAINER EIRELI
+
+                                </div>
+                        </div>
+                        <div class="col-6">
+                               
+                        </div>
+                </div>
+              
                 <h4 style="text-align:center"><strong>Valor Total da Fatura:</strong> R$<?=$fatura->valor?></h4>
 
         </div>
@@ -87,9 +89,13 @@
         </div>
 
         <style>
+        .descpag{
+                text-align:left;
+                font-weight:bold;
+                font-size: 14px;
+        }
         .data{
-                border-style: solid;
-                border-width: 2px;
+                
                 
         }
         .titles{
