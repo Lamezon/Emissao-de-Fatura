@@ -54,8 +54,8 @@
         @endauth
 
         @guest
-        <h1>Homepage</h1>
-        <p class="lead">Your viewing the home page. Please login to view the restricted data.</p>
+        <h1>Bem Vindo</h1>
+        <img class="mb-4" src="{!! url('assets/images/logo.png') !!}" alt="" height="300px" style="margin:auto; display:block">
         @endguest
     </div>
 @endsection

@@ -62,18 +62,20 @@
             <textarea class="form-control" id="observacao" name="observacao" rows="3"></textarea>
         </div>
         <div class="form-group">
-            <label for="observacao">Descrição da Fatura</label>
-            <textarea readonly read class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+            <label for="observacao">Descrição da Fatura (Descrição - Quantidade)</label>
+            <textarea read class="form-control" id="descricao" name="descricao" rows="3"></textarea>
         </div>
         <button class="btn btn-block btn-info">GERAR FATURA</button>
         </form>
         </div>
     <script>
+        var blank = document.getElementById("descricao");
         $(".chosen-select").chosen();
         var produtos = [];
         function adicionaProduto($element){
             produtos.push($element);
             produtos.sort();
+
             atualizaDescricao(produtos);
         }
         function removeProduto($element){
@@ -82,8 +84,10 @@
             produtos.splice(index, 1);
             }
             produtos.sort();
+  
             atualizaDescricao(produtos);
         }
+
         function atualizaDescricao(lista){
            
            
@@ -92,11 +96,11 @@
             return prev;
             }, {});
             
-            const element = document.getElementById("descricao");
+            var element = document.getElementById("descricao");
             var convert = JSON.stringify(count, null, '\t');
             var result = convert.substring(2, convert.length-2);
-            element.innerHTML = "";
-            element.innerHTML = result; 
+            element.value = "";
+            element.value = result; 
         }
         
         jQuery(document).ready(function(){
