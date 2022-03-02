@@ -70,9 +70,10 @@ class ProdutoController extends Controller
      * @param  \App\Models\Produto  $Produto
      * @return \Illuminate\Http\Response
      */
-    public function edit(Produto $Produto)
+    public function edit($id)
     {
-        //
+        $produto = DB::table('produtos')->where('id', $id)->first();
+        return view('product.edit', ['produto'=> $produto]);
     }
 
     /**
@@ -82,9 +83,16 @@ class ProdutoController extends Controller
      * @param  \App\Models\Produto  $Produto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produto $Produto)
+    public function update($id)
     {
-        //
+       
+        $produtos = Produto::where('id', '=', $id)->first();
+        $produtos['nome']=$_POST['nome'];
+        $produtos['descricao']=$_POST['descricao'];
+        $produtos['valor']=$_POST['valor'];
+        $produtos['taxa']=$_POST['taxa'];
+        $produtos->save();
+        return redirect('/lista-produtos')->with('success', "Produto Atualizado");
     }
 
     /**
@@ -93,8 +101,12 @@ class ProdutoController extends Controller
      * @param  \App\Models\Produto  $Produto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produto $Produto)
+    public function destroy($id)
     {
-        //
+     /*    var_dump("asd");
+        exit();
+        $produtos = Produto::where('id', '=', $id)->first();
+        $produtos['del']=1;
+        $produtos->save(); */
     }
 }

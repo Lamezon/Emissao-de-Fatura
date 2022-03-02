@@ -23,8 +23,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         /**
          * Register Routes
          */
-        Route::get('/register', 'RegisterController@show')->name('register.show');
-        Route::post('/register', 'RegisterController@register')->name('register.perform');
+        /* Route::get('/register', 'RegisterController@show')->name('register.show');
+        Route::post('/register', 'RegisterController@register')->name('register.perform'); */
 
         /**
          * Login Routes
@@ -43,11 +43,18 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/cad-produto', 'ProdutoController@index');
         Route::post('/cad-produto', 'ProdutoController@create')->name('product.create');
         Route::get('/lista-produtos', 'ProdutoController@list');
+        Route::get('/lista-produtos/{id}', 'ProdutoController@edit')->name('product.edit');
+        Route::post('/lista-produtos/{id}', 'ProdutoController@update')->name('product.update');
+        Route::get('/lista-produtos/excel', 'ExcelController@product');
 
         Route::get('/cad-cliente', 'ClienteController@index');
         Route::get('/lista-clientes', 'ClienteController@list');
         Route::post('/cad-cliente', 'ClienteController@create')->name('client.create');
+        Route::get('/lista-clientes/excel', 'ExcelController@client');
+        Route::get('/lista-clientes/{id}', 'ClienteController@edit')->name('client.edit');
+        Route::post('/lista-clientes/{id}', 'ClienteController@update')->name('client.update');
 
+        Route::get('/lista-fatura', 'FaturaController@index');
         Route::get('/emissao-fatura', 'FaturaController@index');
         Route::post('/emissao-fatura', 'FaturaController@create')->name('bill.create');
         Route::get('/fatura/{id}', 'FaturaController@show')->name('bill.show');
@@ -55,6 +62,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::post('/cancelar/{id}', 'FaturaController@cancelar')->name('bill.cancelar');
         Route::post('/apagar/{id}', 'FaturaController@apagar')->name('bill.deletar');
         Route::get('/imprimir/{id}', 'FaturaController@print')->name('bill.print');
+        Route::get('/lista-faturas/excel', 'ExcelController@bill');
 
         Route::get('/administrador', 'AdministratorController@index');
         Route::post('/administrador', 'AdministratorController@create')->name('administrator.create');

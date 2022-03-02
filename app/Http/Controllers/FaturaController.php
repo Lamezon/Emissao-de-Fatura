@@ -44,6 +44,8 @@ class FaturaController extends Controller
         $fatura->valor = request('totalFatura');
         $fatura->data_emissao = date("d-m-Y");
         $fatura->descricao = request('descricao');
+        $fatura->data_vencimento = request('data_vencimento');
+        $fatura->forma_pagamento = request('forma_pagamento');
         $fatura->save();
         return redirect('/')->with('success', "Emissão Registrada");
        
@@ -75,15 +77,15 @@ class FaturaController extends Controller
 
     public function emitir($id)
     {
-        Fatura::where('id', $id)->update(['status' => 2]);
-        
+        Fatura::where('id', $id)->update(['status' => 2]);   
+        Fatura::where('id', $id)->update(['data_emitido' => date('d-m-Y')]);
         $fatura = DB::table('faturas')->where('id', $id)->first();
         return view('bill.show', ['fatura'=> $fatura]);
     }
     public function cancelar($id)
     {
         Fatura::where('id', $id)->update(['status' => 3]);
-        
+        Fatura::where('id', $id)->update(['data_emitido' => "Cancelado"]);
         $fatura = DB::table('faturas')->where('id', $id)->first();
         return view('bill.show', ['fatura'=> $fatura]);
     }

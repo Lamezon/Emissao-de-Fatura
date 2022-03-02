@@ -6,16 +6,17 @@
         @auth
         <h1>Lista de Clientes</h1>
         <div class="table-responsive">
-            <table id="table" class="table table-striped table-hover table-bordered table-sm border-light">
+            <table id="table" class="table table-hover table-bordered table-sm border-light">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Nome do Cliente</th>
-                    <th scope="col">CPF</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">CPF/CNPJ</th>
                     <th scope="col">Telefone</th>
                     <th scope="col">Endereço</th>
                     <th scope="col">Cidade</th>
                     <th scope="col">Email</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -29,7 +30,9 @@
                     <td><?= $row['telefone']?></td>
                     <td><?= $row['endereco']?></td> 
                     <td><?= $row['cidade']?></td>
-                    <td><?= $row['email']?></td> 
+                    <td><?= $row['email']?></td>
+                    <td><a href="lista-clientes/<?=$row['id']?>"><button style="width:100%" class="btn btn-info">Editar</button></a></td>
+                   
                     </tr>  
                 <?php } ?>
                 </tbody>
@@ -37,6 +40,11 @@
             </table>
         </div>
     
+        <style>
+            .table td {
+                font-size: 13px;
+            }
+        </style>
         @endauth
 
         @guest

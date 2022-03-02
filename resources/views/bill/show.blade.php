@@ -37,6 +37,21 @@
             </div>
 
             <div class="form-group">
+            <label class="text-center">Data da Emissão</label>
+            <input disabled type="text" class="form-control" value=<?=$fatura->data_emitido?>>
+            </div>
+
+            <div class="form-group">
+            <label class="text-center">Data de Vencimento</label>
+            <input disabled type="text" class="form-control" value=<?=$fatura->data_vencimento?>>
+            </div>
+
+            <div class="form-group">
+            <label class="text-center">Forma de Pagamento</label>
+            <input disabled type="text" class="form-control" value=<?=$fatura->forma_pagamento?>>
+            </div>
+
+            <div class="form-group">
             <label class="text-center">Código do Status</label>
             <input disabled type="text" class="form-control" value=<?=$fatura->status?>>
             </div>

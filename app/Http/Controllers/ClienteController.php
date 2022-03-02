@@ -73,9 +73,10 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cliente $cliente)
+    public function edit($id)
     {
-        //
+        $cliente = DB::table('clientes')->where('id', $id)->first();
+        return view('client.edit', ['cliente'=> $cliente]);
     }
 
     /**
@@ -85,9 +86,19 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cliente $cliente)
+    public function update($id)
     {
-        //
+       
+        $clientes = Cliente::where('id', '=', $id)->first();
+        $clientes['nome']=$_POST['nome'];
+        $clientes['cpf']=$_POST['cpf'];
+        $clientes['telefone']=$_POST['telefone'];
+        $clientes['cep']=$_POST['cep'];
+        $clientes['endereco']=$_POST['endereco'];
+        $clientes['cidade']=$_POST['cidade'];
+        $clientes['email']=$_POST['email'];
+        $clientes->save();
+        return redirect('/lista-clientes')->with('success', "Cliente Atualizado");
     }
 
     /**

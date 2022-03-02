@@ -34,18 +34,18 @@
              { ?>
                  <tr  style="text-align: center;">
                     <td><?= $row['nome']?></td>  
-                    <td><?= (($row['valor'])+($row['taxa']))?></td>
+                    <td><input type="number" id="valorAtual<?=$row['id']?>" value=<?= (($row['valor'])+($row['taxa']))?>></td>
                     <td>
                         <button type="button" class="button btn-success hollow circle" dataValor="<?= (($row['valor'])+($row['taxa']))?>" data-quantity="plus" onclick="adicionaProduto('<?=$row['nome']?>')" dataTotal="<?=$row['id']?>" data-field="quantity<?=$row['id']?>">
                              <i class="fa fa-plus" aria-hidden="true"></i>
                         </button>
-                        <input min="0" disabled class="input-group-field" type="number" dataValor="<?= (($row['valor'])+($row['taxa']))?>" name="quantity<?=$row['id']?>" value="0">
+                        <input disabled min="0" class="input-group-field" type="number" dataValor="<?= (($row['valor'])+($row['taxa']))?>" name="quantity<?=$row['id']?>" value="0">
                         <button type="button" class="button btn-danger hollow circle" dataValor="<?= (($row['valor'])+($row['taxa']))?>" data-quantity="minus" onclick="removeProduto('<?=$row['nome']?>')" dataTotal="<?=$row['id']?>" data-field="quantity<?=$row['id']?>">
                              <i class="fa fa-minus" aria-hidden="true"></i>
                         </button>
                     </td>
                     <td>
-                        <input min="0" class="input-group-field valorTotal subtotal" data-id="total" data-value="0" type="text" style="text-align: center;" name="total<?=$row['id']?>" value="0" >
+                        <input disabled min="0" class="input-group-field valorTotal subtotal" data-id="total" data-value="0" type="text" style="text-align: center;" name="total<?=$row['id']?>" value="0" >
                     </td>
                  </tr>  
              <?php } ?>
@@ -64,6 +64,23 @@
         <div class="form-group">
             <label for="observacao">Descrição da Fatura (Descrição - Quantidade)</label>
             <textarea read class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+        </div>
+        
+        <div class="form-group">
+            <label for="forma_pagamento">Forma de Pagamento</label>
+            <select class="form-control" name="forma_pagamento" id="forma_pagamento">
+                <option value="PIX">PIX</option>
+                <option value="Cartão de Crédito">Cartão de Crédito</option>
+                <option value="Cartão de Debito">Cartão de Debito</option>
+                <option value="Boleto">Boleto</option>
+                <option value="Dinheiro">Dinheiro</option>
+                
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="data_vencimento">Data de Vencimento</label>
+            <input type="date" id="data_vencimento" name="data_vencimento"
+                   class="form-control"/>
         </div>
         <button class="btn btn-block btn-info">GERAR FATURA</button>
         </form>
@@ -112,6 +129,7 @@
         fieldName = $(this).attr('data-field');
         fieldTotal = $(this).attr('dataTotal');
         fieldValor = $(this).attr('dataValor');
+        fieldValorNovo = $('#valorAtual'+fieldTotal).val();
         // Get its current value
         var currentVal = parseInt($('input[name='+fieldName+']').val());
         var currentValTotal = parseFloat($('input[name=total'+fieldTotal+']').val());
@@ -121,7 +139,7 @@
         if (!isNaN(currentVal)) {
             // Increment
             $('input[name='+fieldName+']').val(currentVal + 1);
-            $('input[name=total'+fieldTotal+']').val(parseFloat((parseFloat(currentValTotal))+(parseFloat(fieldValor))).toFixed(2));
+            $('input[name=total'+fieldTotal+']').val(parseFloat((parseFloat(currentValTotal))+(parseFloat(fieldValorNovo))).toFixed(2));
             changeTotal();
             
         } else {
@@ -137,14 +155,15 @@
         fieldName = $(this).attr('data-field');
         fieldTotal = $(this).attr('dataTotal');
         fieldValor = $(this).attr('dataValor');
+        fieldValorNovo = $('#valorAtual'+fieldTotal).val();
         // Get its current value
-        var currentVal = parseFloat($('input[name='+fieldName+']').val());
+        var currentVal = parseFloat($('input[name='+fieldValorNovo+']').val());
         var currentValTotal = parseFloat($('input[name=total'+fieldTotal+']').val());
         // If it isn't undefined or its greater than 0
         if (!isNaN(currentVal) && currentVal > 0) {
             // Decrement one
             $('input[name='+fieldName+']').val(currentVal - 1);
-            $('input[name=total'+fieldTotal+']').val(parseFloat((parseFloat(currentValTotal))-(parseFloat(fieldValor))).toFixed(2));
+            $('input[name=total'+fieldTotal+']').val(parseFloat((parseFloat(currentValTotal))-(parseFloat(fieldValorNovo))).toFixed(2));
             changeTotal();
         } else {
             // Otherwise put a 0 there
@@ -154,8 +173,6 @@
     function changeTotal(){
 
         var TotalValue = 0;
-
-        /* console.log(total[0].value); */
         $("tr .subtotal").each(function(index,value)
         {
             var valor = this.value;
@@ -164,7 +181,7 @@
             TotalValue += parseFloat(valor);
         });
 
-        console.log(TotalValue);
+        
         document.getElementById('val').value = parseFloat(TotalValue).toFixed(2);
                         
     }

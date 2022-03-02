@@ -13,6 +13,7 @@
                     <th scope="col">Descrição</th>
                     <th scope="col">Valor</th>
                     <th scope="col">Taxa</th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -24,7 +25,8 @@
                     <td><?= $row['nome']?></td>  
                     <td><?= $row['descricao']?></td>
                     <td><?= $row['valor']?></td>
-                    <td><?= $row['taxa']?></td> 
+                    <td><?= $row['taxa']?></td>
+                    <td><a href="lista-produtos/<?=$row['id']?>"><button style="width:100%" class="btn btn-info">Editar</button></a></td>
                     </tr>  
                 <?php } ?>
                 </tbody>
