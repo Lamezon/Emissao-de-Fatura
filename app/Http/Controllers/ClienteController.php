@@ -21,7 +21,7 @@ class ClienteController extends Controller
 
     public function list()
     {
-        $clientes = DB::table('clientes')->get();
+        $clientes = DB::table('clientes')->get()->where('del', 0);
         $result = json_decode($clientes, true);
         return view('client.show', ['clientes'=> $result]);
     }
@@ -107,6 +107,14 @@ class ClienteController extends Controller
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
+    public function apagar($id)
+    {
+        Cliente::where('id', $id)->update(['del' => 1]);
+        
+        $clientes = DB::table('clientes')->get()->where('del', 0);
+        $result = json_decode($clientes, true);
+        return view('client.show', ['clientes'=> $result]);
+    }
     public function destroy(Cliente $cliente)
     {
         //

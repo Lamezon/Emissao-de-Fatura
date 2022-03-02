@@ -53,6 +53,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/lista-clientes/excel', 'ExcelController@client');
         Route::get('/lista-clientes/{id}', 'ClienteController@edit')->name('client.edit');
         Route::post('/lista-clientes/{id}', 'ClienteController@update')->name('client.update');
+        Route::post('/apagar-cliente/{id}', 'ClienteController@apagar')->name('client.deletar');
 
         Route::get('/lista-fatura', 'FaturaController@index');
         Route::get('/emissao-fatura', 'FaturaController@index');

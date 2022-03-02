@@ -128,8 +128,14 @@
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Atualizar</button>
         
-        @include('auth.partials.copy')
+       
     </form>
+
+    <form method="post" action="/apagar-cliente/<?=$cliente->id?>">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                <button class="mt-5 btn btn-block btn-dark">Excluir Cliente</button>
+    </form>
+    @include('auth.partials.copy')
         @endauth
 
         @guest
