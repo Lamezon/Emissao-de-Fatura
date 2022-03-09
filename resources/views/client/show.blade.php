@@ -6,7 +6,7 @@
         @auth
         <h1>Lista de Clientes</h1>
         <div class="table-responsive">
-            <table id="table" class="table table-hover table-bordered table-sm border-light">
+            <table id="table" style="text-align:center" class="table table-hover table-bordered table-sm border-light">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -16,6 +16,7 @@
                     <th scope="col">Endereço</th>
                     <th scope="col">Cidade</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Inscrição Estadual</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -31,6 +32,7 @@
                     <td><?= $row['endereco']?></td> 
                     <td><?= $row['cidade']?></td>
                     <td><?= $row['email']?></td>
+                    <td><?= $row['inscricao']?></td>
                     <td><a href="lista-clientes/<?=$row['id']?>"><button style="width:100%" class="btn btn-info">Editar</button></a></td>
                    
                     </tr>  

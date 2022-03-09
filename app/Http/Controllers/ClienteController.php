@@ -36,11 +36,14 @@ class ClienteController extends Controller
         $client = new Cliente();
         $client->nome = request('nome');
         $client->cpf = request('cpf');
+        $client->inscricao = request('inscricao');
         $client->cep = request('cep');
         $client->endereco = request('endereco');
         $client->telefone = request('telefone');
+        $client->telefone2 = request('telefone2');
         $client->cidade = request('cidade');
         $client->email = request('email');
+        $client->email_secundario = request('email_secundario');
         $client->save();
         return redirect('/lista-clientes')->with('success', "Cliente Registrado");
     }
@@ -92,11 +95,14 @@ class ClienteController extends Controller
         $clientes = Cliente::where('id', '=', $id)->first();
         $clientes['nome']=$_POST['nome'];
         $clientes['cpf']=$_POST['cpf'];
+        $clientes['inscricao']=$_POST['inscricao'];
         $clientes['telefone']=$_POST['telefone'];
+        $clientes['telefone2']=$_POST['telefone2'];
         $clientes['cep']=$_POST['cep'];
         $clientes['endereco']=$_POST['endereco'];
         $clientes['cidade']=$_POST['cidade'];
         $clientes['email']=$_POST['email'];
+        $clientes['email_secundario']=$_POST['email_secundario'];
         $clientes->save();
         return redirect('/lista-clientes')->with('success', "Cliente Atualizado");
     }

@@ -88,10 +88,25 @@
         </div>
 
         <div class="form-group form-floating mb-3">
+            <input type="text" class="form-control" name="inscricao"  value="{{ old('inscricao') }}" placeholder="XXXXXXXXX" required="required">
+            <label for="inscricao">Inscrição Estadual</label>
+            @if ($errors->has('inscricao'))
+                <span class="text-danger text-left">{{ $errors->first('inscricao') }}</span>
+            @endif
+        </div>
+
+        <div class="form-group form-floating mb-3">
             <input type="text" class="form-control" name="telefone" value="{{ old('telefone') }}" placeholder="Telefone do Cliente" required="required">
             <label for="floatingTelefone">Telefone</label>
             @if ($errors->has('telefone'))
                 <span class="text-danger text-left">{{ $errors->first('telefone') }}</span>
+            @endif
+        </div>
+        <div class="form-group form-floating mb-3">
+            <input type="text" class="form-control" name="telefone2" value="{{ old('telefone2') }}" placeholder="Telefones Extras do Cliente" required="required">
+            <label for="floatingTelefone2">Outros Telefones</label>
+            @if ($errors->has('telefone2'))
+                <span class="text-danger text-left">{{ $errors->first('telefone2') }}</span>
             @endif
         </div>
 
@@ -123,6 +138,13 @@
             <label for="floatingEmail">E-Mail</label>
             @if ($errors->has('email'))
                 <span class="text-danger text-left">{{ $errors->first('email') }}</span>
+            @endif
+        </div>
+        <div class="form-group form-floating mb-3">
+            <input type="text" class="form-control" name="email_secundario" value="{{ old('email_secundario') }}" placeholder="Outros Emails" required="required">
+            <label for="floatingemail_secundario">E-Mails</label>
+            @if ($errors->has('email_secundario'))
+                <span class="text-danger text-left">{{ $errors->first('email_secundario') }}</span>
             @endif
         </div>
 

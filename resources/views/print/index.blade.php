@@ -31,13 +31,29 @@
                 <h4><strong>CNPJ/CPF: </strong><?=$cliente->cpf?></h4>
                 <h4><strong>Endereço: </strong><?=$cliente->endereco?></h4>
                 <h4><strong>Cidade: </strong><?=$cliente->cidade?></h4>
-                <h4><strong>Telefone: </strong><?=$cliente->telefone?></h4>               
+                <h4><strong>Telefone: </strong><?=$cliente->telefone?></h4>
+                <h4><strong>Inscrição Estadual: </strong><?=$cliente->inscricao?></h4>               
                 
         </div>
         
         <div class="container" style="margin-top: 5px;">
                 <span class="subtitle">Dados da Locação</span>
-                <h4><strong>Status:</strong> <?=$fatura->status?></h4>
+                <h4><strong>Status:</strong>
+                 <?php switch ($fatura->status) {
+
+                        case 1:
+                                echo "Emitido";
+                                break;
+                        case 2:
+                                echo "Faturado";
+                                break;
+                        case 3:
+                                echo "Cancelado";
+                                break;
+                        default:
+                                echo "Deletada";
+                }?>
+                </h4>
                 <h4 class="data" style="padding: 15px; text-align: center"><strong>Descrição<br></strong>
                 <?php $linha_descricao = explode(",", $fatura->descricao) ?>
                 <?php $imploded = implode("<br>",$linha_descricao); ?>

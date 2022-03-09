@@ -18,7 +18,7 @@ class FaturaController extends Controller
     {
         $produtos = DB::table('produtos')->orderBy('nome', 'ASC')->get()->where('del', 0);
         $result = json_decode($produtos, true); 
-        $clientes = DB::table('clientes')->get();
+        $clientes = DB::table('clientes')->get()->where('del', 0);
         $result2 = json_decode($clientes, true);
         return view('bill.index', ['produtos'=> $result, 'clientes' => $result2]);
     }
@@ -44,7 +44,9 @@ class FaturaController extends Controller
         $fatura->valor = request('totalFatura');
         $fatura->data_emissao = date("d-m-Y");
         $fatura->descricao = request('descricao');
-        $fatura->data_vencimento = request('data_vencimento');
+        $orgDate = request('data_vencimento');
+        $newDate = date("d-m-Y", strtotime($orgDate));
+        $fatura->data_vencimento = $newDate;
         $fatura->forma_pagamento = request('forma_pagamento');
         $fatura->save();
         return redirect('/')->with('success', "Emissão Registrada");
