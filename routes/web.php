@@ -18,6 +18,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     /**
      * Home Routes
      */
+    Route::get('/home', 'HomeController@index')->name('home.index');
     Route::get('/', 'LoginController@show')->name('login.show');
     Route::group(['middleware' => ['guest']], function() {
         /**
