@@ -39,7 +39,7 @@ class ProdutoController extends Controller
         $product->taxa = request('taxa');
         $product->descricao = request('descricao');
         $product->save();
-        return redirect('/')->with('success', "Produto Registrado");
+        return redirect('/lista-fatura')->with('success', "Produto Registrado");
     }
 
     /**

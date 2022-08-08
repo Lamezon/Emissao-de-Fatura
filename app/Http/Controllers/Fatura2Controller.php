@@ -7,7 +7,7 @@ use App\Models\Fatura;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class FaturaController extends Controller
+class Fatura2Controller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,7 +20,7 @@ class FaturaController extends Controller
         $result = json_decode($produtos, true); 
         $clientes = DB::table('clientes')->get()->where('del', 0);
         $result2 = json_decode($clientes, true);
-        return view('bill.index', ['produtos'=> $result, 'clientes' => $result2]);
+        return view('fatura.index', ['produtos'=> $result, 'clientes' => $result2]);
     }
 
     /**
@@ -30,18 +30,17 @@ class FaturaController extends Controller
      */
     public function create(FaturaRequest $request)
     {
-
-        $request->validated();
         $cliente = DB::table('clientes')->where('id', $_POST['id_cliente'])->first();
         $cliente_nome = $cliente->nome;
         $cliente_email = $cliente->email;
+        $cliente_id = $cliente->id;
         $fatura = new Fatura();
         $fatura->nome = $cliente_nome;
-        $fatura->id_cliente = request('id_cliente');
-        $fatura->email = $cliente_email;
+        $fatura->id_cliente = $cliente_id;
         $fatura->status = 1;
-        $fatura->observacao = request('observacao');
-        $fatura->valor = request('totalFatura');
+        $fatura->valor = request('total');
+        $fatura->email = $cliente_email;
+        $fatura->observacao = request('observacao');     
         $fatura->data_emissao = date("d-m-Y");
         $fatura->descricao = request('descricao');
         $orgDate = request('data_vencimento');
@@ -49,7 +48,7 @@ class FaturaController extends Controller
         $fatura->data_vencimento = $newDate;
         $fatura->forma_pagamento = request('forma_pagamento');
         $fatura->save();
-        return redirect('/home')->with('success', "Emissão Registrada");
+        return redirect('/lista-fatura')->with('success', "Fatura Registrada");
        
         
     }

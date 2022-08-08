@@ -17,7 +17,7 @@
          <li><a href="/cad-cliente" class="nav-link px-2 text-white btn btn-outline-secondary">Cadastro de Cliente</a></li>
          <li><a href="/lista-clientes" class="nav-link px-2 text-white btn btn-outline-secondary">Lista de Clientes</a></li>
          <li><a href="/emissao-fatura" class="nav-link px-2 text-white btn btn-outline-secondary">Emissão de Fatura</a></li>
-         <li><a href="/" class="nav-link px-2 text-white btn btn-outline-secondary">Lista de Faturas</a></li>
+         <li><a href="/lista-fatura" class="nav-link px-2 text-white btn btn-outline-secondary">Lista de Faturas</a></li>
          
          
          <!-- <li><a href="/administrador" class="nav-link px-2 text-white btn btn-outline-secondary">Informações</a></li>

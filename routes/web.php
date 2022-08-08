@@ -18,7 +18,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
     /**
      * Home Routes
      */
-    Route::get('/home', 'HomeController@index')->name('home.index');
+    Route::get('/home', 'HomeController@index');
     Route::get('/', 'LoginController@show')->name('login.show');
     Route::group(['middleware' => ['guest']], function() {
         /**
@@ -30,7 +30,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         /**
          * Login Routes
          */
-        Route::get('/login', 'LoginController@show')->name('login.show');
+        Route::get('/login', 'LoginController@show');
         Route::post('/login', 'LoginController@login')->name('login.perform');
 
     });
@@ -56,9 +56,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::post('/lista-clientes/{id}', 'ClienteController@update')->name('client.update');
         Route::post('/apagar-cliente/{id}', 'ClienteController@apagar')->name('client.deletar');
 
-        Route::get('/lista-fatura', 'FaturaController@index');
-        Route::get('/emissao-fatura', 'FaturaController@index');
-        Route::post('/emissao-fatura', 'FaturaController@create')->name('bill.create');
+        Route::get('/lista-fatura', 'HomeController@index')->name('home.index');
+        Route::get('/emissao-fatura', 'Fatura2Controller@index');
+        Route::post('/emissao-fatura', 'Fatura2Controller@create')->name('teste.create');
         Route::get('/fatura/{id}', 'FaturaController@show')->name('bill.show');
         Route::post('/emitir/{id}', 'FaturaController@emitir')->name('bill.emitir');
         Route::post('/cancelar/{id}', 'FaturaController@cancelar')->name('bill.cancelar');
@@ -69,6 +69,9 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('/administrador', 'AdministratorController@index');
         Route::post('/administrador', 'AdministratorController@create')->name('administrator.create');
         Route::get('/administrador/{id}/edit', 'AdministratorController@list');
-        Route::post('/administrador/{id}', 'AdministratorController@edit')->name('administrator.edit');       
+        Route::post('/administrador/{id}', 'AdministratorController@edit')->name('administrator.edit'); 
+        /* Route::get('/teste', 'Fatura2Controller@index');
+        Route::post('/teste', 'Fatura2Controller@create')->name('teste.create'); */
+
     });
 });

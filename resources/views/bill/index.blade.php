@@ -34,7 +34,7 @@
              { ?>
                  <tr  style="text-align: center;">
                     <td><?= $row['nome']?></td>  
-                    <td><input type="number" id="valorAtual<?=$row['id']?>" value=<?= (($row['valor'])+($row['taxa']))?>></td>
+                    <td><input step=".01" type="number" id="valorAtual<?=$row['id']?>" value=<?= (($row['valor'])+($row['taxa']))?>></td>
                     <td>
                         <button type="button" class="button btn-success hollow circle" dataValor="<?= (($row['valor'])+($row['taxa']))?>" data-quantity="plus" onclick="adicionaProduto('<?=$row['nome']?>')" dataTotal="<?=$row['id']?>" data-field="quantity<?=$row['id']?>">
                              <i class="fa fa-plus" aria-hidden="true"></i>

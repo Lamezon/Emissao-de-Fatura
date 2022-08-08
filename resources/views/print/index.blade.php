@@ -56,22 +56,26 @@
                 </h4>
                 <h4 class="data" style="padding: 15px; text-align: center"><strong>Descrição<br></strong>
                 <?php $linha_descricao = explode(",", $fatura->descricao) ?>
-                <?php $imploded = implode("<br>",$linha_descricao); ?>
-                <?php $clear_imploded = str_replace('"', "", $imploded)?>
-                <?php $clear_imploded2 = str_replace(':', "</td><td>", $clear_imploded)?>
-                <?php $desc = explode("\t", $clear_imploded2) ?>
+              
                 <table class="table table-striped table-hover table-bordered table-sm border-light">
                 <thead>
                 <tr>
-                    <th scope="col">Nome do Produto</th>
-                    <th scope="col">Quantidade</th>
+                    <th scope="col"></th>
+                    
                 </tr>
                 </thead>
-                <?php 
-                 foreach ($desc as $index) {
+                <?php
+                 foreach ($linha_descricao as $index) {
+                        
+                
+                        $linha = explode(",",$index);
+                        
+                        
+                      
                         echo '<tr>';
-                                echo '<td>'. $index .'</td>';
+                               echo '<td>'. $linha[0] .'</td>';
                         echo '</tr>';
+                       
                 }
                 ?>
                 </table>
