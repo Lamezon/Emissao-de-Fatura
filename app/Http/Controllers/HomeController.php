@@ -13,4 +13,12 @@ class HomeController extends Controller
         $result = json_decode($faturas, true);
         return view('home.index', ['faturas'=> $result]);
     }
+
+    public function teste()
+    {
+        $faturas = DB::table('faturas')->get()->where('del', 0);
+       
+        $result = json_decode($faturas, true);
+        return view('home.teste', ['faturas'=> $result]);
+    }
 }

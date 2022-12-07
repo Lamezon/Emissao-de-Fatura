@@ -64,6 +64,7 @@
                     
                 </tr>
                 </thead>
+                <div class="row">
                 <?php
                  foreach ($linha_descricao as $index) {
                         
@@ -72,12 +73,13 @@
                         
                         
                       
-                        echo '<tr>';
-                               echo '<td>'. $linha[0] .'</td>';
-                        echo '</tr>';
+                        echo '<div class="col-sm-6">';
+                               echo ''. $linha[0] .'';
+                        echo '</div>';
                        
                 }
                 ?>
+                </div>
                 </table>
               
                 <h4 style="text-align:center"><strong>Valor Total da Fatura:</strong> R$<?=$fatura->valor?></h4>

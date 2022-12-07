@@ -19,6 +19,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
      * Home Routes
      */
     Route::get('/home', 'HomeController@index');
+    Route::get('/teste', 'HomeController@teste');
     Route::get('/', 'LoginController@show')->name('login.show');
     Route::group(['middleware' => ['guest']], function() {
         /**
@@ -61,8 +62,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::post('/emissao-fatura', 'Fatura2Controller@create')->name('teste.create');
         Route::get('/fatura/{id}', 'FaturaController@show')->name('bill.show');
         Route::post('/emitir/{id}', 'FaturaController@emitir')->name('bill.emitir');
-        Route::post('/cancelar/{id}', 'FaturaController@cancelar')->name('bill.cancelar');
-        Route::post('/apagar/{id}', 'FaturaController@apagar')->name('bill.deletar');
+        Route::post('/cancelar/{id}', 'FaturaController2@cancelar')->name('bill.cancelar');
+        Route::post('/apagar/{id}', 'FaturaController2@apagar')->name('bill.deletar');
         Route::get('/imprimir/{id}', 'FaturaController@print')->name('bill.print');
         Route::get('/lista-faturas/excel', 'ExcelController@bill');
 

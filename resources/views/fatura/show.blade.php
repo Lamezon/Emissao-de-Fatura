@@ -76,8 +76,18 @@
             <a href="/home"><span class="btn btn-block btn-primary">Voltar</span></a>
             <?php
             //Se o status for Cancelado ou Emitido
-            } else {
+            } else if($fatura->status==2){
                 ?>
+            <form method="post" action="/cancelar/<?=$fatura->id?>">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                <button class="btn btn-block btn-danger">Cancelar Fatura</button>
+            </form>
+            <a href="/home"><span class="btn btn-block btn-primary">Voltar</span></a>
+                
+<?
+            }else{
+                ?>
+                
                 <a href="/home"><span class="btn btn-block btn-primary">Voltar</span></a>
                 <?php
             }
